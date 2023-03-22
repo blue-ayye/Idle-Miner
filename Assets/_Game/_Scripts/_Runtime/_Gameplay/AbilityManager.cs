@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AbilityManager : MonoBehaviour
 {
-    [SerializeField] private float _goldBalance;
     [SerializeField] private List<TabBaseUI> _tabs;
 
     private TabBaseUI _activeTab;

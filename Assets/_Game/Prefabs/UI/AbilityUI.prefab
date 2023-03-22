@@ -198,7 +198,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9124384435344306374}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2230509246847694326}
+        m_TargetAssemblyTypeName: AbilityUI, Assembly-CSharp
+        m_MethodName: Upgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9124384435527565118
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,6 +522,8 @@ MonoBehaviour:
   _levelText: {fileID: 9124384435944709047}
   _descriptionText: {fileID: 9124384437369510328}
   _costText: {fileID: 9124384436044526059}
+  _upgradeButtonText: {fileID: 9124384436540635441}
+  _upgradeButton: {fileID: 9124384435344306375}
 --- !u!1 &9124384435944709033
 GameObject:
   m_ObjectHideFlags: 0
