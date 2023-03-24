@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "SO/Ability")]
-public class Ability : ScriptableObject
+public class AbilitySO : ScriptableObject
 {
     public event Action OnUpgrade;
 
@@ -16,7 +16,7 @@ public class Ability : ScriptableObject
 
     public Sprite DisplayIcon => _iconSprite;
     public string Title => _name;
-    public string Level => _level.ToString();
+    public int Level { get => _level; set => _level = value; }
     public string Description => _description;
     public float Cost => _baseCost; //unlock cost = level 1 price
     public float DPS { get; private set; }

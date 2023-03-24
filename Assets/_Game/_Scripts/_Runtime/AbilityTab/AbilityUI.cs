@@ -12,9 +12,9 @@ public class AbilityUI : MonoBehaviour
     [SerializeField] private TMP_Text _upgradeButtonText;
     [SerializeField] private Button _upgradeButton;
 
-    private Ability _ability;
+    private AbilitySO _ability;
 
-    public void Bind(Ability ability)
+    public void Bind(AbilitySO ability)
     {
         _ability = ability;
 
@@ -46,7 +46,8 @@ public class AbilityUI : MonoBehaviour
 
         var upgrade = _ability.GetAvailableUpgrades();
         _costText.SetText($"{upgrade.cost}");
-        _upgradeButtonText.SetText($"Upgrade X{upgrade.upgrades}");
-        _upgradeButton.interactable = upgrade.canAfford ? true : false;
+        var upgradeText = upgrade.upgrades > 1 ? $"Upgrade X{upgrade.upgrades}" : $"Upgrade";
+        _upgradeButtonText.SetText(upgradeText);
+        _upgradeButton.interactable = upgrade.canAfford;
     }
 }

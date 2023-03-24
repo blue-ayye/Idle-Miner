@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TabBaseUI : MonoBehaviour
+public class TabBase : MonoBehaviour
 {
+    public GameObject TabUI;
 }
