@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class TabManager : MonoBehaviour
 {
+    public static TabManager Instance;
+
     #region Data Persistence
 
     [System.Serializable]
@@ -39,6 +41,11 @@ public class TabManager : MonoBehaviour
     private List<TabBase> _tabs;
 
     private TabBase _activeTab;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
