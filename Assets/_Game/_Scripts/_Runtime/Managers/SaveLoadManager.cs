@@ -26,8 +26,6 @@ public class SaveLoadManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log($"Start {gameObject.name}");
-
         Load();
     }
 
@@ -35,6 +33,7 @@ public class SaveLoadManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S)) Save();
         if (Input.GetKeyDown(KeyCode.L)) Load();
+        if (Input.GetKeyDown(KeyCode.C)) Clean();
     }
 
     private void Clean()
@@ -43,11 +42,11 @@ public class SaveLoadManager : MonoBehaviour
         {
             File.Delete(_filePath);
 
-            Debug.Log("Cleaned Saved Data Completed!");
+            Debug.Log($"<color=#FFAD5A>[SAVE DATA CLEAR]</color> Removed save file!");
         }
         else
         {
-            Debug.Log("Can Not Find Saved Data!");
+            Debug.Log($"<color=#4F9DA6>Can Not Find Saved Data!</color>");
         }
     }
 
@@ -60,7 +59,7 @@ public class SaveLoadManager : MonoBehaviour
             // Set data
             SetData(gameData);
 
-            Debug.Log($"Default Game Data Loaded Successfully!");
+            Debug.Log($"<color=#FFAD5A>Default Game Data Loaded Successfully!</color>");
             return;
         }
 
@@ -72,12 +71,12 @@ public class SaveLoadManager : MonoBehaviour
         }
         catch
         {
-            Debug.Log("[GAME LOAD] Unsuccessful. Load default data.");
+            Debug.Log($"<color=#FF5959>[GAME LOAD]</color> Unsuccessful. Load default data.");
         }
 
         // Set data
         SetData(gameData);
-        Debug.Log($"[GAME LOAD] Successful! File Path: {_filePath}");
+        Debug.Log($"<color=#729D39>[GAME LOAD]</color> Successful! File Path: {_filePath}");
     }
 
     private void Save()
@@ -89,7 +88,7 @@ public class SaveLoadManager : MonoBehaviour
 
         File.WriteAllText(_filePath, json);
 
-        Debug.Log($"[GAME SAVE] Successful! File Path: {_filePath}");
+        Debug.Log($"<color=#729D39>[GAME SAVE]</color> Successful! File Path: {_filePath}");
     }
 
     private GameData GetData()

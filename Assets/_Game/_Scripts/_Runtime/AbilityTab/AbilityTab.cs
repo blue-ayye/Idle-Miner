@@ -21,15 +21,32 @@ public class AbilityTab : TabBase
 
     private void Start()
     {
-        foreach (var ability in _abilities)
+        GameManager.OnGoldChanged += GameManager_OnGoldChanged;
+
+        for (int i = 0; i <= UnlockedAbilityIndex; i++)
         {
-            CreateAbilityUI(ability);
+            CreateAbilityUI(_abilities[i]);
         }
+    }
+
+    private void GameManager_OnGoldChanged()
+    {
+        if (_abilities.Count <= UnlockedAbilityIndex + 1 ||
+            _abilities[UnlockedAbilityIndex].Cost > GameManager.Instance.Gold)
+        {
+            return;
+        }
+
+        UnlockedAbilityIndex++;
+        CreateAbilityUI(_abilities[UnlockedAbilityIndex]);
     }
 
     private void CreateAbilityUI(AbilitySO ability)
     {
+        if (ability == null) return;
+
         var newAbilityUI = Instantiate(_abilityUIPrefab, _abilityUIContainer);
         newAbilityUI.Bind(ability);
+        newAbilityUI.transform.SetAsLastSibling();
     }
 }

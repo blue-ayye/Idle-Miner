@@ -3549,10 +3549,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22cd05df46b41e7429415ab6d7ec9b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gold: 500
-  _debug: 0
-  _addGold: 500
-  _ticks: 1
+  _gold: 0
+  _debug: 1
+  _addGold: 10
+  _ticks: 0.1
   UpgradeTimes: 50
 --- !u!1 &1476594381
 GameObject:
