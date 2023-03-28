@@ -11,32 +11,32 @@ public class TabManager : MonoBehaviour
     public struct Data
     {
         public List<int> StatLevels;
-        public List<int> AbilityLevels;
-        public int AbilityUnlockedIndex;
+        public List<int> PickaxeLevels;
+        public int UnlockedPickaxeIndex;
 
-        public Data(List<int> statLevels, List<int> abilityLevels, int abilityUnlockedIndex)
+        public Data(List<int> statLevels, List<int> pickaxeLevels, int unlockedPickaxeIndex)
         {
             StatLevels = statLevels;
-            AbilityLevels = abilityLevels;
-            AbilityUnlockedIndex = abilityUnlockedIndex;
+            PickaxeLevels = pickaxeLevels;
+            UnlockedPickaxeIndex = unlockedPickaxeIndex;
         }
     }
 
     public void SetData(Data data)
     {
-        _abilityTab.AbilityLevels = data.AbilityLevels;
-        _abilityTab.UnlockedAbilityIndex = data.AbilityUnlockedIndex;
+        _pickaxeTab.PickaxeLevels = data.PickaxeLevels;
+        _pickaxeTab.UnlockedPickaxeIndex = data.UnlockedPickaxeIndex;
     }
 
     public Data GetData()
     {
-        return new Data(new List<int>(), _abilityTab.AbilityLevels, _abilityTab.UnlockedAbilityIndex);
+        return new Data(new List<int>(), _pickaxeTab.PickaxeLevels, _pickaxeTab.UnlockedPickaxeIndex);
     }
 
     #endregion Data Persistence
 
     [SerializeField] private StatsTab _statsTab;
-    [SerializeField] private AbilityTab _abilityTab;
+    [SerializeField] private PickaxeTab _pickaxeTab;
 
     private List<TabBase> _tabs;
 
@@ -49,7 +49,7 @@ public class TabManager : MonoBehaviour
 
     private void Start()
     {
-        _tabs = new List<TabBase> { _statsTab, _abilityTab };
+        _tabs = new List<TabBase> { _statsTab, _pickaxeTab };
 
         //Disable all tabs
         foreach (var tab in _tabs)

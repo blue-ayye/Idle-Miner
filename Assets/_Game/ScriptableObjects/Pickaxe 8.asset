@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2527c249067d9d6489a88faf245811b4, type: 3}
+  m_Name: Pickaxe 8
+  m_EditorClassIdentifier: 
+  _iconSprite: {fileID: 21300000, guid: fa812d446d11aea4d92622a3136753d5, type: 3}
+  _name: Magmaflow
+  _level: 0
+  _baseDPS: 1000
+  _dpsMultiplier: 1.15
+  _baseCost: 15000
+  _costMultiplier: 1.15
+  _description: A pickaxe that emits a stream of molten lava with every strike. It's
+    perfect for mining in volcanic regions.

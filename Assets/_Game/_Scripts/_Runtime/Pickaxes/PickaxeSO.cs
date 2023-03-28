@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "SO/Ability")]
-public class AbilitySO : ScriptableObject
+[CreateAssetMenu(menuName = "SO/Pickaxe")]
+public class PickaxeSO : ScriptableObject
 {
     public event Action OnUpgrade;
 
@@ -11,36 +11,34 @@ public class AbilitySO : ScriptableObject
     [SerializeField] private int _level;
     [SerializeField] private float _baseDPS;
     [SerializeField, Range(1, 10)] private float _dpsMultiplier;
-
-    [SerializeField, Multiline] private string _description;
-
-    public Sprite DisplayIcon => _iconSprite;
-    public string Title => _name;
-    public int Level { get => _level; set => _level = value; }
-    public string Description => _description;
-    public float Cost => _baseCost; //unlock cost = level 1 price
-    public float DPS { get; private set; }
-
     [SerializeField] private float _baseCost = 100f;
     [SerializeField, Range(1, 10)] private float _costMultiplier = 1.15f;
+    [SerializeField, Multiline] private string _description;
+
+    public int Level { get => _level; set => _level = value; }
+    public float DPS { get; private set; }
+    public Sprite DisplayIcon => _iconSprite;
+    public string DisplayName => _name;
+    public string Description => _description;
+    public float UnlockCost => _baseCost;
 
     public void Upgrade()
     {
-        var upgrade = GetAvailableUpgrades();
+        var upgrades = GetAvailableUpgrades();
 
-        if (!upgrade.canAfford)
+        if (!upgrades.canAfford)
         {
-            Debug.Log($"Need {upgrade.cost - GameManager.Instance.Gold} more gold");
+            Debug.Log($"Need {upgrades.cost - GameManager.Instance.Gold} more gold");
             return;
         }
 
-        GameManager.Instance.RemoveGold(upgrade.cost);
-        _level += upgrade.upgrades;
+        GameManager.Instance.RemoveGold(upgrades.cost);
+        _level += upgrades.upgradeTimes;
 
         OnUpgrade?.Invoke();
     }
 
-    public (int upgrades, float cost, bool canAfford) GetAvailableUpgrades()
+    public (int upgradeTimes, float cost, bool canAfford) GetAvailableUpgrades()
     {
         float remainingGold = GameManager.Instance.Gold;
         int upgradeTimes = (int)GameManager.Instance.UpgradeTimes;
@@ -60,8 +58,9 @@ public class AbilitySO : ScriptableObject
     {
         float totalCost = 0;
         int nextUpgrade = _level + 1;
+        int lastUpgrade = _level + upgradeTimes;
 
-        for (int i = nextUpgrade; i <= _level + upgradeTimes; i++)
+        for (int i = nextUpgrade; i <= lastUpgrade; i++)
         {
             totalCost += _baseCost * Mathf.Pow(i, _costMultiplier);
         }
